@@ -1,6 +1,7 @@
 name: Démo outputs
 run-name: "Éxécution du workflow ${{github.workflow}} pour le commit ${{github.event.head_commit.message}}"
-on: push
+on: 
+push:
   jobs:
     jobs1:
     runs-on: unbutu-latest
