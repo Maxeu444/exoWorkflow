@@ -11,10 +11,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: npm instal, build et test
+      - name: npm instal
         run: |
           npm install
+      - name: npm run buld
+        run: |
           npm run build --if-present
+      - name: npm test
+        run: |
           npm test
       - name: Artefact
         uses: actions/upload-artifact@v4
