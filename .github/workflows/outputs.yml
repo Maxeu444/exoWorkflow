@@ -1,23 +1,20 @@
 name: Démo outputs
-run-name: "Éxécution du workflow ${{github.workflow}} pour le commit ${{github.event.head_commit.message}}"
-on: push
-  jobs:
-    job1:
-    name: Génère des paramètres de sortie
-    runs-on: unbutu-latest
-    outputs:  #Définit les outputs de job1 sortie1 et sortie2
-              #en les mappants avec mes outputs VAR1 de étape1 et VAR2 de étape2
-      sortie1: ${{ steps.etape1.outputs.VAR1 }}
-      sortie2: ${{ steps.etape2.outputs.VAR2 }}
-    steps: 
-    - id: etape1
-      name: Set VAR1
-      run: echo "VAR1=Hello" >> $GITHUB_OUTPUT
-    - id: etape2
-      name: Set VAR2
-      run: echo "VAR1=world!" >> $GITHUB_OUTPUT
-    - id: etape3
-      name: echo VAR1 VAR2
-      run : echo ${{ steps.etape1.outputs.VAR1 }} ${{ steps.etape2.outputs.VAR2 }} 
-
-
+on:
+  push:
+    jobs:
+      job1:
+        name: Génère des paramètres de sortie
+        runs-on: ubuntu-latest
+        outputs:
+          sortie1: ${{ steps.etape1.outputs.VAR1 }}
+          sortie2: ${{ steps.etape2.outputs.VAR2 }}
+        steps:
+          - id: etape1
+            name: Set VAR1
+            run: echo "VAR1=Hello" >> $GITHUB_OUTPUT
+          - id: etape2
+            name: Set VAR2
+            run: echo "VAR2=world!" >> $GITHUB_OUTPUT
+          - id: etape3
+            name: echo VAR1 VAR2
+            run: echo ${{ steps.etape1.outputs.VAR1 }} ${{ steps.etape2.outputs.VAR2 }}
