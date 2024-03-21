@@ -32,5 +32,8 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: dist
+          path: dist
       - name: Afficher la liste des fichiers
         run: ls -l dist
+
+
