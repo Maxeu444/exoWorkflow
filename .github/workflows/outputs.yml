@@ -1,0 +1,16 @@
+name: Démo outputs
+run-name: "Éxécution du workflow ${{github.workflow}} pour le commit ${{github.event.head_commit.message}}"
+on: push
+  jobs:
+    jobs1:
+    runs-on: unbutu-latest
+    steps: 
+      id: etape1
+    - name: Set VAR1
+      run: echo "VAR1=Hello" >> $GITHUB_OUTPUT
+      id: etape2
+    - name: Set VAR2
+      run: echo "VAR1=world!" >> $GITHUB_OUTPUT
+      id: etape3
+    - name: echo VAR1 VAR2
+      run : echo ${{ steps.etape1.outputs.VAR1 }} ${{ steps.etape2.outputs.VAR2 }} 
