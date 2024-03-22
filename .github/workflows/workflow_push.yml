@@ -4,6 +4,7 @@ on:
   push:
 jobs:
   mon-job:
+    runs-on: unbutu-latest
     steps:
       - name: cache npm
         uses: actions/cache@v4
