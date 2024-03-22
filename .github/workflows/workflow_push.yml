@@ -1,5 +1,7 @@
 name: osef
 
+on:
+  push:
 jobs:
   mon-job:
     steps:
