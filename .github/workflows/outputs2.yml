@@ -1,0 +1,21 @@
+name: appeller le premier workflow et utiliser ses outputs
+
+on:
+  workflow_dispatch:
+
+jobs:
+  premier-job:
+    name: Appelle le 1er worflow
+    uses: exoWorkflow\.github\workflows/outputs.yml@main
+
+  deuxieme-job:
+    name: Affiche les outputs du 1er workflow
+    runs-on: unbutu-latest
+    needs: premier-job
+    steps:
+      - name: Retourne "Hello World!
+        run: echo ${{ needs.premier-job.outputs.variable1 }} ${{ needs.premier-job.outputs.variable2 }}
+      - name: Affiche le contenu de needs
+        run: echo "$NEEDS_JSON"
+          env: 
+          NEEDS_JSON: ${{ toJSON(needs) }}

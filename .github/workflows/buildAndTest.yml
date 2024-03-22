@@ -1,0 +1,22 @@
+name: Workflow lors d'un push
+on: push
+jobs:
+  mon_job:
+    - name: Buils teste et run mon app
+    runs-on: unbutu-latest
+    steps:
+      - name: récupérer le code
+        uses: action/checkout@v4
+        - name: cache npm
+          uses: actions/cache@v4
+          with:
+            path: ~/.npm
+            key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
+            - name: install node_modules
+            run: npm ci
+            - name: test
+              run: npm run test
+            - name: build
+              run: npm run build
+            - name: start
+              run: npm run start
